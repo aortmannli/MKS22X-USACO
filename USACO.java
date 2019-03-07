@@ -4,28 +4,23 @@ import java.io.*;
 public class USACO{
 
   public static int bronze(String filename) throws FileNotFoundException{
-    char[][] grid;
+    int[][] grid;
+    int[][] instructions;
     int R,C,E,N;
-    File f = new File(filename);
-    Scanner in = new Scanner(f);
-
-    String ln = in.nextLine();
-    R = ln.charAt(0) - '0';
-    System.out.print(R);
-    C = ln.charAt(2) - '0';
-    E = ln.charAt(4) - '0';
-    N = ln.charAt(6) - '0';
-
-    grid = new char[R][C];
-
-    for(int x = 0; x < R; x++){
-       String line = in.nextLine();
-       for(int y = 0; y < line.length(); y++){
-          grid[x][y] = line.charAt(y);
-          System.out.println(grid[x][y]);
-       }
-     }
-
+    File file = new File(filename);
+    Scanner in = new Scanner(file);
+    R = Integer.parseInt(in.next());
+    C = Integer.parseInt(in.next());
+    E = Integer.parseInt(in.next());
+    N = Integer.parseInt(in.next());
+    grid = new int[R][C];
+    for (int y = 0; y < R; y++){
+      for (int x = 0; x < C; x++){
+        grid[y][x] = Integer.parseInt(in.next());
+        System.out.print(grid[y][x] + " ");
+      }
+      System.out.print("\n");
+    }
      return 0;
   }
 
