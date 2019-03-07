@@ -90,6 +90,13 @@ public class USACO{
     return 72 * 72 * depth;
   }
 
+  public static int silver(){
+    /*fewer than two neighbouring valid spots or more than three valid spots is NO LONGER VALID
+    any valid spot with two or three live neighboursremians valid
+    any invalid cell with exactly three valid neighbours becomes a valid spot
+    you cannot go on trees
+    */
+  }
   public static void main(String[] args) throws FileNotFoundException{
     System.out.println(bronze("test.txt"));
   }
