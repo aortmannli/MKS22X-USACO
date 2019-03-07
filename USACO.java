@@ -43,35 +43,23 @@ public class USACO{
       int stomp = i[2];
       int max = 0;
 
-      int[] elevations = new int[9];
-      for(int b = 0; b < 9; b++){
-        for (int y = 0; y<3;y++) {
-          for (int z = 0; z<3; z++) {
-            elevations[b] = grid[r + y][c + z];
+
+      for (int y = 0; y<3;y++) {
+        for (int x = 0; x<3; x++) {
+          if (max < grid[r+y][c+x]) {
+            max = grid[r+y][c+x];
           }
         }
       }
 
-
-
-      System.out.println(elevations[8]);
-      max = elevations[8];
-/*
-      for (int y = 0; y<3;y++) {
-        for (int z = 0; z<3; z++) {
-          if (max < grid[r+y][c+z]) {
-            max = grid[r+y][c+z];
-          }
-        }
-      }*/
-
+      System.out.println("");
       System.out.println(max);
 
       max -= stomp;
       for (int y = 0; y<3;y++) {
-        for (int z = 0; z<3; z++){
-          if (grid[r+y][c+z] > max) {
-            grid[r+y][c+z] = max;
+        for (int x = 0; x<3; x++){
+          if (grid[r+y][c+x] > max) {
+            grid[r+y][c+x] = max;
           }
         }
       }
@@ -96,23 +84,11 @@ public class USACO{
         }
       }
     }
+
     System.out.println(depth);
 
     return 72 * 72 * depth;
   }
-
-  public static void insertionSort(int[] data){
-     for(int i = 1; i < data.length; i++){
-       int current = data[i];
-       boolean sorted = false;
-       int idx = i-1;
-       while(!(idx < 0 || data[idx] < current)){
-         data[idx+1] = data[idx];
-         idx--;
-       }
-       data[idx+1] = current;
-     }
-   }
 
   public static void main(String[] args) throws FileNotFoundException{
     System.out.println(bronze("test.txt"));
