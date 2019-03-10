@@ -125,31 +125,40 @@ public class USACO{
 		int c_e = in.nextInt()-1;
 
     grid[r_s][c_e] = 1;
+
     for(int i = 0; i < T; i++){
-      for(int y=0; y<grid.length; y++){
-        for(int x=0; x<grid[y].length; x++){
-          if(noTree[y][x]){
-            if(grid[y][x] !=0){
-              grid[y+1][x] += grid[y][x];
-              grid[y][x+1] += grid[y][x];
-              grid[y-1][x] += grid[y][x];
-              grid[y][x-1] += grid[y][x];
-            }
-          }else{
-            grid[y][x] = -1;
-          }
-        }
-      }
+      grid = mod(grid,noTree);
     }
 
     return grid[r_e][c_e];
   }
 
-  public static void mod(int[][]map, int r, int c, int num){
+  public static int[][] mod(int[][] grid, boolean[][] noTree){
+    int R = grid.length;
+    int C = grid[0].length;
+    int[][] out = new int[R][C];
+    for(int y=0; y<R; y++){
+      for(int x=0; x<C; x++){
+        if(noTree[y][x]){
+          if(grid[y][x] !=0){
+            int num = grid[y][x];
 
+            if (y > 0) out[y-1][x] += num;
+            if (x > 0) out[y][x-1] += num;
+            if (y < R-1) out[y+1][x] += num;
+            if (x < C-1) out[y][x+1] += num;
+
+          }
+        }else{
+          out[y][x] = -1;
+        }
+      }
+    }
+    return out;
   }
 
   public static void main(String[] args) throws FileNotFoundException{
-    System.out.println(bronze("test.txt"));
+    //System.out.println(bronze("testLake.txt"));
+    System.out.println(silver("testCow.txt"));
   }
 }
