@@ -93,11 +93,6 @@ public class USACO{
   }
 
   public static int silver(String filename) throws FileNotFoundException{
-    /*fewer than two neighbouring valid cell or more than three valid cells dies
-    any live cell with two or three live neighbours remians live
-    any dead cell with exactly three live neighbours becomes a live cell
-    you cannot go on trees
-    */
 
     File file = new File(filename);
     Scanner in = new Scanner(file);
@@ -118,7 +113,7 @@ public class USACO{
     for (int r = 0; r < R; r++) {
 			for (int c = 0; c < C; c++) {
 			  if(noTree[r][c]) grid[r][c] = 0;
-        else grid[r][c] = -1;
+          else grid[r][c] = -1;
 			}
 		}
 
