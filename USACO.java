@@ -103,13 +103,19 @@ public class USACO{
     int C = in.nextInt();
     int T = in.nextInt();
 
-    boolean[][] map = new boolean[R][C];
+    boolean[][] noTree = new boolean[R][C];
     int[][] grid = new int[R][C];
 
     for (int r = 0; r < R; r++) {
 			String line = in.next();
 			for (int c = 0; c < C; c++) {
-				map[r][c] = (line.charAt(c) != '*');
+				noTree[r][c] = (line.charAt(c) != '*');
+			}
+		}
+
+    for (int r = 0; r < R; r++) {
+			for (int c = 0; c < C; c++) {
+				grid[r][c] = 0;
 			}
 		}
 
@@ -118,11 +124,29 @@ public class USACO{
 		int r_e = in.nextInt()-1;
 		int c_e = in.nextInt()-1;
 
+    grid[r_s][c_e] = 1;
     for(int i = 0; i < T; i++){
-      
+      for(int y=0; y<grid.length; y++){
+        for(int x=0; x<grid[y].length; x++){
+          if(noTree[y][x]){
+            if(grid[y][x] !=0){
+              grid[y+1][x] += grid[y][x];
+              grid[y][x+1] += grid[y][x];
+              grid[y-1][x] += grid[y][x];
+              grid[y][x-1] += grid[y][x];
+            }
+          }else{
+            grid[y][x] = -1;
+          }
+        }
+      }
     }
 
-    return 0;
+    return grid[r_e][c_e];
+  }
+
+  public static void mod(int[][]map, int r, int c, int num){
+
   }
 
   public static void main(String[] args) throws FileNotFoundException{
