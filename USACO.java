@@ -23,9 +23,9 @@ public class USACO{
     for (int y = 0; y < R; y++){
       for (int x = 0; x < C; x++){
         grid[y][x] = Integer.parseInt(in.next());
-        System.out.print(grid[y][x] + " ");
+        //System.out.print(grid[y][x] + " ");
       }
-      System.out.print("\n");
+      //System.out.print("\n");
     }
 
     stompDig = new int[N][3];
@@ -52,8 +52,8 @@ public class USACO{
         }
       }
 
-      System.out.println("");
-      System.out.println(max);
+      /* System.out.println("");
+      System.out.println(max); */
 
       max -= stomp;
       for (int y = 0; y<3;y++) {
@@ -64,6 +64,7 @@ public class USACO{
         }
       }
 
+      /*
       System.out.println("");
       for (int y = 0; y < R; y++){
         for (int x = 0; x < C; x++){
@@ -71,6 +72,7 @@ public class USACO{
         }
         System.out.print("\n");
       }
+      */
     }
 
 
@@ -85,7 +87,7 @@ public class USACO{
       }
     }
 
-    System.out.println(depth);
+    //System.out.println(depth);
 
     return 72 * 72 * depth;
   }
@@ -115,7 +117,8 @@ public class USACO{
 
     for (int r = 0; r < R; r++) {
 			for (int c = 0; c < C; c++) {
-				grid[r][c] = 0;
+			  if(noTree[r][c]) grid[r][c] = 0;
+        else grid[r][c] = -1;
 			}
 		}
 
@@ -124,10 +127,17 @@ public class USACO{
 		int r_e = in.nextInt()-1;
 		int c_e = in.nextInt()-1;
 
-    grid[r_s][c_e] = 1;
+    grid[r_s][c_s] = 1;
 
     for(int i = 0; i < T; i++){
       grid = mod(grid,noTree);
+      /*System.out.println("");
+      for (int y = 0; y < R; y++){
+        for (int x = 0; x < C; x++){
+          System.out.print(grid[y][x] + " ");
+        }
+        System.out.print("\n");
+      }*/
     }
 
     return grid[r_e][c_e];
@@ -158,7 +168,7 @@ public class USACO{
   }
 
   public static void main(String[] args) throws FileNotFoundException{
-    //System.out.println(bronze("testLake.txt"));
-    System.out.println(silver("testCow.txt"));
+    System.out.println(bronze("testLake.txt"));
+    //System.out.println(silver("testCow.txt"));
   }
 }
